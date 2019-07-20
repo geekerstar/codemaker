@@ -16,19 +16,19 @@ public class DataBaseMetaDataTest {
     @Before
     public void init() throws Exception {
 
-        String driver ="com.mysql.jdbc.Driver";
-        String url="jdbc:mysql://127.0.0.1:3306/ihrm?useUnicode=true&characterEncoding=utf8";
-        String username="root";
-        String password="210819";
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://127.0.0.1:3306/ihrm?useUnicode=true&characterEncoding=utf8";
+        String username = "root";
+        String password = "210819";
 
         Properties props = new Properties();
-        props.put("remarksReporting","true");//获取数据库的备注信息
-        props.put("user",username);
-        props.put("password",password);
+        props.put("remarksReporting", "true");//获取数据库的备注信息
+        props.put("user", username);
+        props.put("password", password);
 
         //1.获取连接
         Class.forName(driver);//注册驱动
-        connection = DriverManager.getConnection(url,props);
+        connection = DriverManager.getConnection(url, props);
     }
 
     //获取数据库基本信息

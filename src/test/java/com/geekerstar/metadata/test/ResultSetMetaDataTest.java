@@ -8,8 +8,8 @@ import java.util.Properties;
 
 /**
  * 测试结果集元数据（ResultSetMetaData）
- *      通过ResultSet获取
- *      获取查询结果的信息
+ * 通过ResultSet获取
+ * 获取查询结果的信息
  */
 public class ResultSetMetaDataTest {
 
@@ -18,19 +18,19 @@ public class ResultSetMetaDataTest {
     @Before
     public void init() throws Exception {
 
-        String driver ="com.mysql.jdbc.Driver";
-        String url="jdbc:mysql://127.0.0.1:3306/ihrm?useUnicode=true&characterEncoding=utf8";
-        String username="root";
-        String password="210819";
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://127.0.0.1:3306/ihrm?useUnicode=true&characterEncoding=utf8";
+        String username = "root";
+        String password = "210819";
 
         Properties props = new Properties();
-        props.put("remarksReporting","true");//获取数据库的备注信息
-        props.put("user",username);
-        props.put("password",password);
+        props.put("remarksReporting", "true");//获取数据库的备注信息
+        props.put("user", username);
+        props.put("password", password);
 
         //1.获取连接
         Class.forName(driver);//注册驱动
-        connection = DriverManager.getConnection(url,props);
+        connection = DriverManager.getConnection(url, props);
     }
 
 
@@ -50,14 +50,14 @@ public class ResultSetMetaDataTest {
         //获取查询字段个数
         int count = metaData.getColumnCount();
 
-        for(int i =1;i<=count ;i++) {
+        for (int i = 1; i <= count; i++) {
             //获取列名
             String columnName = metaData.getColumnName(i);
             //获取字段类型 sql类型
             String columnType = metaData.getColumnTypeName(i);
             //获取java类型
             String columnClassName = metaData.getColumnClassName(i);
-            System.out.println(columnName+"--"+columnType+"---"+columnClassName);
+            System.out.println(columnName + "--" + columnType + "---" + columnClassName);
         }
     }
 

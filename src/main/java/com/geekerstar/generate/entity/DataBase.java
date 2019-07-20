@@ -1,7 +1,6 @@
 package com.geekerstar.generate.entity;
 
 
-
 //数据库实体类
 public class DataBase {
     private static String mysqlUrl = "jdbc:mysql://[ip]:[port]/[db]?useUnicode=true&amp;characterEncoding=UTF8";
@@ -15,32 +14,32 @@ public class DataBase {
     private String driver;
     private String url;
 
-    public DataBase() {}
-
-    public DataBase(String dbType) {
-        this(dbType,"127.0.0.1","3306","");
+    public DataBase() {
     }
 
-    public DataBase(String dbType,String db) {
-        this(dbType,"127.0.0.1","3306",db);
+    public DataBase(String dbType) {
+        this(dbType, "127.0.0.1", "3306", "");
+    }
+
+    public DataBase(String dbType, String db) {
+        this(dbType, "127.0.0.1", "3306", db);
     }
 
 
     /**
-     *
-     * @param dbType        数据库类型
-     * @param ip            ip
-     * @param port          3306
-     * @param db            ihrm
+     * @param dbType 数据库类型
+     * @param ip     ip
+     * @param port   3306
+     * @param db     ihrm
      */
-    public DataBase(String dbType,String ip,String port,String db) {
+    public DataBase(String dbType, String ip, String port, String db) {
         this.dbType = dbType;
-        if("MYSQL".endsWith(dbType.toUpperCase())) {
-            this.driver="com.mysql.jdbc.Driver";
-            this.url=mysqlUrl.replace("[ip]",ip).replace("[port]",port).replace("[db]",db);
-        }else{
-            this.driver="oracle.jdbc.driver.OracleDriver";
-            this.url=oracleUrl.replace("[ip]",ip).replace("[port]",port).replace("[db]",db);
+        if ("MYSQL".endsWith(dbType.toUpperCase())) {
+            this.driver = "com.mysql.jdbc.Driver";
+            this.url = mysqlUrl.replace("[ip]", ip).replace("[port]", port).replace("[db]", db);
+        } else {
+            this.driver = "oracle.jdbc.driver.OracleDriver";
+            this.url = oracleUrl.replace("[ip]", ip).replace("[port]", port).replace("[db]", db);
         }
     }
 

@@ -7,13 +7,13 @@ import java.util.regex.Pattern;
 public class StringUtils {
 
     public static String removeCrlf(String str) {
-        if(str == null) return null;
-        return StringUtils.join(StringUtils.tokenizeToStringArray(str,"\t\n\r\f")," ");
+        if (str == null) return null;
+        return StringUtils.join(StringUtils.tokenizeToStringArray(str, "\t\n\r\f"), " ");
     }
 
-    private static final Map<String,String> XML = new HashMap<String,String>();
+    private static final Map<String, String> XML = new HashMap<String, String>();
 
-    static{
+    static {
         XML.put("apos", "'");
         XML.put("quot", "\"");
         XML.put("amp", "&");
@@ -22,28 +22,28 @@ public class StringUtils {
     }
 
     public static String unescapeXml(String str) {
-        if(str == null) return null;
-        for(String key : XML.keySet()) {
+        if (str == null) return null;
+        for (String key : XML.keySet()) {
             String value = XML.get(key);
-            str = StringUtils.replace(str, "&"+key+";", value);
+            str = StringUtils.replace(str, "&" + key + ";", value);
         }
         return str;
     }
 
 
-    public static String removePrefix(String str,String prefix) {
-        return removePrefix(str,prefix,false);
+    public static String removePrefix(String str, String prefix) {
+        return removePrefix(str, prefix, false);
     }
 
-    public static String removePrefix(String str,String prefix,boolean ignoreCase) {
-        if(str == null) return null;
-        if(prefix == null) return str;
-        if(ignoreCase) {
-            if(str.toLowerCase().startsWith(prefix.toLowerCase())) {
+    public static String removePrefix(String str, String prefix, boolean ignoreCase) {
+        if (str == null) return null;
+        if (prefix == null) return str;
+        if (ignoreCase) {
+            if (str.toLowerCase().startsWith(prefix.toLowerCase())) {
                 return str.substring(prefix.length());
             }
-        }else {
-            if(str.startsWith(prefix)) {
+        } else {
+            if (str.startsWith(prefix)) {
                 return str.substring(prefix.length());
             }
         }
@@ -59,16 +59,17 @@ public class StringUtils {
     }
 
     public static String getExtension(String str) {
-        if(str == null) return null;
+        if (str == null) return null;
         int i = str.lastIndexOf('.');
-        if(i >= 0) {
-            return str.substring(i+1);
+        if (i >= 0) {
+            return str.substring(i + 1);
         }
         return null;
     }
 
     /**
      * Count the occurrences of the substring in string s.
+     *
      * @param str string to search in. Return 0 if this is null.
      * @param sub string to search for. Return 0 if this is null.
      */
@@ -86,12 +87,12 @@ public class StringUtils {
         return count;
     }
 
-    public static boolean contains(String str,String... keywords) {
-        if(str == null) return false;
-        if(keywords == null) throw new IllegalArgumentException("'keywords' must be not null");
+    public static boolean contains(String str, String... keywords) {
+        if (str == null) return false;
+        if (keywords == null) throw new IllegalArgumentException("'keywords' must be not null");
 
-        for(String keyword : keywords) {
-            if(str.contains(keyword.toLowerCase())) {
+        for (String keyword : keywords) {
+            if (str.contains(keyword.toLowerCase())) {
                 return true;
             }
         }
@@ -99,14 +100,14 @@ public class StringUtils {
     }
 
     public static String defaultString(Object value) {
-        if(value == null) {
+        if (value == null) {
             return "";
         }
         return value.toString();
     }
 
-    public static String defaultIfEmpty(Object value,String defaultValue) {
-        if(value == null || "".equals(value)) {
+    public static String defaultIfEmpty(Object value, String defaultValue) {
+        if (value == null || "".equals(value)) {
             return defaultValue;
         }
         return value.toString();
@@ -116,10 +117,10 @@ public class StringUtils {
         String[] strs = sqlName.toLowerCase().split("_");
         String result = "";
         String preStr = "";
-        for(int i = 0; i < strs.length; i++) {
-            if(preStr.length() == 1) {
+        for (int i = 0; i < strs.length; i++) {
+            if (preStr.length() == 1) {
                 result += strs[i];
-            }else {
+            } else {
                 result += capitalize(strs[i]);
             }
             preStr = strs[i];
@@ -127,10 +128,10 @@ public class StringUtils {
         return result;
     }
 
-    public static int indexOfByRegex(String input,String regex) {
+    public static int indexOfByRegex(String input, String regex) {
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(input);
-        if(m.find()) {
+        if (m.find()) {
             return m.start();
         }
         return -1;
@@ -148,7 +149,7 @@ public class StringUtils {
         if (inString == null) {
             return null;
         }
-        for(String k : keywords) {
+        for (String k : keywords) {
             inString = replace(inString, k, "");
         }
         return inString;
@@ -179,16 +180,24 @@ public class StringUtils {
         // remember to append any characters to the right of a match
         return sbuf.toString();
     }
-    /**����ĸ��copy from spring*/
+
+    /**
+     * ����ĸ��copy from spring
+     */
     public static String capitalize(String str) {
         return changeFirstCharacterCase(str, true);
     }
 
-    /**����ĸСдcopy from spring*/
+    /**
+     * ����ĸСдcopy from spring
+     */
     public static String uncapitalize(String str) {
         return changeFirstCharacterCase(str, false);
     }
-    /**copy from spring*/
+
+    /**
+     * copy from spring
+     */
     private static String changeFirstCharacterCase(String str, boolean capitalize) {
         if (str == null || str.length() == 0) {
             return str;
@@ -196,8 +205,7 @@ public class StringUtils {
         StringBuffer buf = new StringBuffer(str.length());
         if (capitalize) {
             buf.append(Character.toUpperCase(str.charAt(0)));
-        }
-        else {
+        } else {
             buf.append(Character.toLowerCase(str.charAt(0)));
         }
         buf.append(str.substring(1));
@@ -205,6 +213,7 @@ public class StringUtils {
     }
 
     private static final Random RANDOM = new Random();
+
     public static String randomNumeric(int count) {
         return random(count, false, true);
     }
@@ -282,15 +291,16 @@ public class StringUtils {
     }
 
     /**
+     *
      */
     public static String toUnderscoreName(String name) {
-        if(name == null) return null;
+        if (name == null) return null;
 
         String filteredName = name;
-        if(filteredName.indexOf("_") >= 0 && filteredName.equals(filteredName.toUpperCase())) {
+        if (filteredName.indexOf("_") >= 0 && filteredName.equals(filteredName.toUpperCase())) {
             filteredName = filteredName.toLowerCase();
         }
-        if(filteredName.indexOf("_") == -1 && filteredName.equals(filteredName.toUpperCase())) {
+        if (filteredName.indexOf("_") == -1 && filteredName.equals(filteredName.toUpperCase())) {
             filteredName = filteredName.toLowerCase();
         }
 
@@ -300,21 +310,20 @@ public class StringUtils {
             for (int i = 1; i < filteredName.length(); i++) {
                 String preChart = filteredName.substring(i - 1, i);
                 String c = filteredName.substring(i, i + 1);
-                if(c.equals("_")) {
+                if (c.equals("_")) {
                     result.append("_");
                     continue;
                 }
-                if(preChart.equals("_")){
+                if (preChart.equals("_")) {
                     result.append(c.toLowerCase());
                     continue;
                 }
-                if(c.matches("\\d")) {
+                if (c.matches("\\d")) {
                     result.append(c);
-                }else if (c.equals(c.toUpperCase())) {
+                } else if (c.equals(c.toUpperCase())) {
                     result.append("_");
                     result.append(c.toLowerCase());
-                }
-                else {
+                } else {
                     result.append(c);
                 }
             }
@@ -322,10 +331,10 @@ public class StringUtils {
         return result.toString();
     }
 
-    public static String removeEndWiths(String inputString,String... endWiths) {
-        for(String endWith : endWiths) {
-            if(inputString.endsWith(endWith)) {
-                return inputString.substring(0,inputString.length() - endWith.length());
+    public static String removeEndWiths(String inputString, String... endWiths) {
+        for (String endWith : endWiths) {
+            if (inputString.endsWith(endWith)) {
+                return inputString.substring(0, inputString.length() - endWith.length());
             }
         }
         return inputString;
@@ -340,8 +349,9 @@ public class StringUtils {
     /**
      * Test whether the given string matches the given substring
      * at the given index.
-     * @param str the original string (or StringBuilder)
-     * @param index the index in the original string to start matching against
+     *
+     * @param str       the original string (or StringBuilder)
+     * @param index     the index in the original string to start matching against
      * @param substring the substring to match at the given index
      */
     public static boolean substringMatch(CharSequence str, int index, CharSequence substring) {
@@ -354,47 +364,49 @@ public class StringUtils {
         return true;
     }
 
-    public static String[] tokenizeToStringArray(String str,String seperators) {
-        if(str == null) return new String[0];
-        StringTokenizer tokenlizer = new StringTokenizer(str,seperators);
+    public static String[] tokenizeToStringArray(String str, String seperators) {
+        if (str == null) return new String[0];
+        StringTokenizer tokenlizer = new StringTokenizer(str, seperators);
         List result = new ArrayList();
 
-        while(tokenlizer.hasMoreElements()) {
+        while (tokenlizer.hasMoreElements()) {
             Object s = tokenlizer.nextElement();
             result.add(s);
         }
-        return (String[])result.toArray(new String[result.size()]);
-    }
-    public static String join(List list, String seperator) {
-        return join(list.toArray(new Object[0]),seperator);
+        return (String[]) result.toArray(new String[result.size()]);
     }
 
-    public static String replace(int start, int end, String str,String replacement) {
-        String before = str.substring(0,start);
+    public static String join(List list, String seperator) {
+        return join(list.toArray(new Object[0]), seperator);
+    }
+
+    public static String replace(int start, int end, String str, String replacement) {
+        String before = str.substring(0, start);
         String after = str.substring(end);
         return before + replacement + after;
     }
 
     public static String join(Object[] array, String seperator) {
-        if(array == null) return null;
+        if (array == null) return null;
         StringBuffer result = new StringBuffer();
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             result.append(array[i]);
-            if(i != array.length - 1)  {
+            if (i != array.length - 1) {
                 result.append(seperator);
             }
         }
         return result.toString();
     }
+
     public static int containsCount(String string, String keyword) {
-        if(string == null) return 0;
+        if (string == null) return 0;
         int count = 0;
-        for(int i = 0; i < string.length(); i++ ) {
-            int indexOf = string.indexOf(keyword,i);
-            if(indexOf < 0) {
+        for (int i = 0; i < string.length(); i++) {
+            int indexOf = string.indexOf(keyword, i);
+            if (indexOf < 0) {
                 break;
             }
-            count ++;
+            count++;
             i = indexOf;
         }
         return count;

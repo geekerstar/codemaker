@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * 第一个FreeMarker程序（数据+模板=文件输出）
- *      1.操作步骤
+ * 1.操作步骤
  */
 public class FreeMarkerTest01 {
 
@@ -31,13 +31,13 @@ public class FreeMarkerTest01 {
         //3.获取模板
         Template template = cfg.getTemplate("template01.ftl");
         //4.构造数据模型
-        Map<String,Object> dataModel = new HashMap<>();
+        Map<String, Object> dataModel = new HashMap<>();
 
         //
 
         //user对象
-        dataModel.put("username","Geekerstar");
-        dataModel.put("flag",3);
+        dataModel.put("username", "Geekerstar");
+        dataModel.put("flag", 3);
 
         List<String> list = new ArrayList<>();
         list.add("星期一");
@@ -45,7 +45,7 @@ public class FreeMarkerTest01 {
         list.add("星期三");
         list.add("星期四");
 
-        dataModel.put("weeks",list);
+        dataModel.put("weeks", list);
 
         //5.文件输出
         /**
@@ -54,6 +54,6 @@ public class FreeMarkerTest01 {
          *      参数二：writer（FileWriter（文件输出），printWriter（控制台输出））
          */
         //template.process(dataModel,new FileWriter(new File("a.txt")));
-        template.process(dataModel,new PrintWriter(System.out));
+        template.process(dataModel, new PrintWriter(System.out));
     }
 }

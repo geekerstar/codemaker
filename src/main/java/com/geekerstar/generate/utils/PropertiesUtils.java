@@ -7,18 +7,18 @@ import java.util.*;
 
 /**
  * 需要将自定义的配置信息写入到properties文件中
- *      配置到相对于工程的properties文件夹下
+ * 配置到相对于工程的properties文件夹下
  */
 public class PropertiesUtils {
 
-    public static Map<String,String> customMap = new HashMap<>();
+    public static Map<String, String> customMap = new HashMap<>();
 
     static {
         File dir = new File("properties");
         try {
             List<File> files = FileUtils.searchAllFile(new File(dir.getAbsolutePath()));
             for (File file : files) {
-                if(file.getName().endsWith(".properties")) {
+                if (file.getName().endsWith(".properties")) {
                     Properties prop = new Properties();
                     prop.load(new FileInputStream(file));
                     customMap.putAll((Map) prop);
@@ -30,8 +30,8 @@ public class PropertiesUtils {
     }
 
     public static void main(String[] args) {
-        PropertiesUtils.customMap.forEach((k, v)->{
-            System.out.println(k+"--"+v);
+        PropertiesUtils.customMap.forEach((k, v) -> {
+            System.out.println(k + "--" + v);
         });
     }
 }
